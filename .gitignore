@@ -1,0 +1,15 @@
+# dic
+/.vscode
+/build
+
+# checkpoint
+*.trt
+*.onnx
+*.pth
+
+# executables
+*.o
+
+# image
+*.jpg
+
