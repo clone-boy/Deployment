@@ -16,13 +16,11 @@ find_package(CUDA)
 include_directories(
     ${OpenCV_INCLUDE_DIRS}
     ${CUDA_TOOLKIT_ROOT_DIR}/include
-    ${PROTOBUF_DIR}/include
     ${TENSORRT_DIR}/include
     ${CUDNN_DIR}/include
 )
 
 link_directories(
-    ${PROTOBUF_DIR}/lib
     ${TENSORRT_DIR}/lib
     ${CUDA_TOOLKIT_ROOT_DIR}/lib64
     ${CUDNN_DIR}/lib64
@@ -59,7 +57,6 @@ if(BUILD_SHARED_LIBRARY)
     add_library(trt SHARED ${TRT_SRCS})
     target_link_libraries(trt nvinfer nvinfer_plugin)
     target_link_libraries(trt cuda cublas cudart cudnn)
-    target_link_libraries(trt protobuf)
     target_link_libraries(trt opencv_core opencv_imgproc opencv_imgcodecs)
     target_link_libraries(trt p_sock)
     target_include_directories(trt PUBLIC ${PROJECT_SOURCE_DIR}/src)
@@ -74,7 +71,6 @@ if(BUILD_STATIC_LIBRARY)
     add_library(trt_s STATIC ${TRT_SRCS})
     target_link_libraries(trt_s nvinfer nvinfer_plugin)
     target_link_libraries(trt_s cuda cublas cudart cudnn)
-    target_link_libraries(trt_s protobuf)
     target_link_libraries(trt_s opencv_core opencv_imgproc opencv_imgcodecs)
     target_link_libraries(trt_s p_sock_s)
     target_include_directories(trt_s PUBLIC ${PROJECT_SOURCE_DIR}/src)
